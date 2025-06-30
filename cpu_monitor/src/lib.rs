@@ -1,8 +1,8 @@
+use once_cell::sync::Lazy;
 use std::ffi::CString;
 use std::os::raw::{c_char, c_int};
-use sysinfo::System;
-use once_cell::sync::Lazy;
 use std::sync::Mutex;
+use sysinfo::System;
 
 static SYSTEM: Lazy<Mutex<System>> = Lazy::new(|| Mutex::new(System::new_all()));
 
@@ -82,7 +82,10 @@ mod tests {
         let cpu_count = get_cpu_count();
         for i in 0..cpu_count {
             let usage = get_cpu_usage(i);
-            assert!((0.0..=100.0).contains(&usage), "CPU usage should be between 0.0 and 100.0, got {usage}");
+            assert!(
+                (0.0..=100.0).contains(&usage),
+                "CPU usage should be between 0.0 and 100.0, got {usage}"
+            );
         }
     }
 
@@ -96,7 +99,9 @@ mod tests {
             assert!(!name_ptr.is_null(), "CPU name should not be null");
 
             // Free the string to avoid memory leak in test
-            unsafe { free_string(name_ptr); }
+            unsafe {
+                free_string(name_ptr);
+            }
         }
     }
 
@@ -110,6 +115,9 @@ mod tests {
         assert_eq!(usage, 0.0, "Invalid CPU index should return 0.0");
 
         let name_ptr = get_cpu_name(cpu_count + 10);
-        assert!(name_ptr.is_null(), "Invalid CPU index should return null pointer");
+        assert!(
+            name_ptr.is_null(),
+            "Invalid CPU index should return null pointer"
+        );
     }
 }
