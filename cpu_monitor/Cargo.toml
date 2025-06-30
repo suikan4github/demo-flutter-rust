@@ -10,3 +10,4 @@ crate-type = ["cdylib"]
 [dependencies]
 sysinfo = "0.32"
 libc = "0.2"
+once_cell = "1.21.3"

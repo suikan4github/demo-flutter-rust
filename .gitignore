@@ -60,3 +60,5 @@ test_lib
 *.so
 *.dll
 *.dylib
+
+/.error_log/
