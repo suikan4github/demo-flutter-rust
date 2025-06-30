@@ -1,12 +1,19 @@
+
 # CHANGELOG
 
 All notable changes to this project will be documented in this file.
-
-The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
-and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
-
+The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+
+## [v0.1.7] - 2025-07-01
+
+### Fixed
+- Bundled Rust FFI library (`libcpu_monitor.so`, `cpu_monitor.dll`, `libcpu_monitor.dylib`) is now included in the distributed zip/tar.gz for all platforms (Linux, Windows, macOS).
+- Fixed runtime error where the app could not find the Rust dynamic library after extracting the artifact.
+
+### Changed
+- CI/CD workflow now copies the Rust library to the Flutter build output directory for each platform before packaging artifacts.
 
 ## [v0.1.6] - 2025-07-01
 
@@ -89,7 +96,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Memory-safe Rust implementation with proper string handling
 - Platform-specific library loading (Linux: .so, Windows: .dll, macOS: .dylib)
 - 
-[Unreleased]: https://github.com/suikan4github/demo-flutter-rust-cpu/compare/v0.1.6...develop
+[Unreleased]: https://github.com/suikan4github/demo-flutter-rust-cpu/compare/v0.1.7...develop
+[v0.1.7]: https://github.com/suikan4github/demo-flutter-rust-cpu/compare/v0.1.6...v0.1.7
 [v0.1.6]: https://github.com/suikan4github/demo-flutter-rust-cpu/compare/v0.1.5...v0.1.6
 [v0.1.5]: https://github.com/suikan4github/demo-flutter-rust-cpu/compare/v0.1.3...v0.1.5
 [v0.1.3]: https://github.com/suikan4github/demo-flutter-rust-cpu/compare/v0.1.2...v0.1.3

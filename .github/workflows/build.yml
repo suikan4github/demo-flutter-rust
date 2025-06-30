@@ -48,36 +48,13 @@ jobs:
       
     - name: Build Rust library
       run: cd cpu_monitor && cargo build --release
-      
+
     - name: Build Flutter Linux app
       run: flutter build linux --release
-      
-    - name: Create Linux AppImage
-      run: |
-        # Create a simple directory structure for the app
-        mkdir -p AppDir/usr/bin
-        mkdir -p AppDir/usr/lib
-        mkdir -p AppDir/usr/share/applications
-        mkdir -p AppDir/usr/share/icons/hicolor/256x256/apps
-        
-        # Copy the built app
-        cp -r build/linux/x64/release/bundle/* AppDir/usr/bin/
-        cp cpu_monitor/target/release/libcpu_monitor.so AppDir/usr/lib/
-        
-        # Create .desktop file
-        cat > AppDir/usr/share/applications/demo_flutter_rust_cpu.desktop << EOF
-        [Desktop Entry]
-        Type=Application
-        Name=CPU Monitor Demo
-        Comment=Flutter-Rust CPU Monitor Demo
-        Icon=demo_flutter_rust_cpu
-        Exec=demo_flutter_rust_cpu
-        Categories=System;Monitor;
-        EOF
-        
-        # Create a simple icon (placeholder)
-        echo "Creating placeholder icon..."
-        
+
+    - name: Copy Rust library to Flutter bundle
+      run: cp cpu_monitor/target/release/libcpu_monitor.so build/linux/x64/release/bundle/
+
     - name: Upload Linux artifacts
       uses: actions/upload-artifact@v4
       with:
@@ -110,10 +87,8 @@ jobs:
         cd cpu_monitor
         cargo build --release --target x86_64-pc-windows-msvc
         
-    - name: Copy Rust library to expected location
-      run: |
-        if (!(Test-Path cpu_monitor\target\release)) { mkdir cpu_monitor\target\release }
-        copy cpu_monitor\target\x86_64-pc-windows-msvc\release\cpu_monitor.dll cpu_monitor\target\release\
+    - name: Copy Rust library to Flutter bundle
+      run: copy cpu_monitor\target\x86_64-pc-windows-msvc\release\cpu_monitor.dll build\windows\x64\runner\Release\
         
     - name: Build Flutter Windows app
       run: flutter build windows --release
@@ -145,10 +120,13 @@ jobs:
       
     - name: Build Rust library
       run: cd cpu_monitor && cargo build --release
-      
+
     - name: Build Flutter macOS app
       run: flutter build macos --release
-      
+
+    - name: Copy Rust library to Flutter bundle
+      run: cp cpu_monitor/target/release/libcpu_monitor.dylib build/macos/Build/Products/Release/
+
     - name: Upload macOS artifacts
       uses: actions/upload-artifact@v4
       with:
