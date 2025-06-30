@@ -1,7 +1,7 @@
 # Flutter-Rust CPU Monitor Demo
 
-[![CI](https://github.com/YOUR_USERNAME/demo-flutter-rust-cpu/workflows/CI/badge.svg)](https://github.com/YOUR_USERNAME/demo-flutter-rust-cpu/actions/workflows/ci.yml)
-[![Build and Release](https://github.com/YOUR_USERNAME/demo-flutter-rust-cpu/workflows/Build%20and%20Release/badge.svg)](https://github.com/YOUR_USERNAME/demo-flutter-rust-cpu/actions/workflows/build.yml)
+[![CI](https://github.com/suikan4github/demo-flutter-rust-cpu/workflows/CI/badge.svg)](https://github.com/suikan4github/demo-flutter-rust-cpu/actions/workflows/ci.yml)
+[![Build and Release](https://github.com/suikan4github/demo-flutter-rust-cpu/workflows/Build%20and%20Release/badge.svg)](https://github.com/suikan4github/demo-flutter-rust-cpu/actions/workflows/build.yml)
 
 A demonstration application showcasing the collaboration between Flutter and Rust to display real-time CPU usage information.
 
