@@ -8,15 +8,21 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [v0.1.6] - 2025-07-01
+
+### Fixed
+- Fixed permission issue in GitHub Actions workflows
+- Added explicit permissions for `contents: write` in `build.yml`.
+
 ## [v0.1.5] - 2025-06-30
 
 ### Fixed
-- Rust CI/CDワークフローで cargo fmt による整形エラーを修正
-- Rustコード（cpu_monitor/src/lib.rs）を cargo fmt で自動整形
-- Windowsビルドワークフローの PowerShell mkdir エラーを修正（既存ディレクトリがあっても失敗しないように）
+- Fixed cargo fmt formatting error in Rust CI/CD workflow
+- Automatically formatted Rust code (cpu_monitor/src/lib.rs) with cargo fmt
+- Fixed PowerShell mkdir error in Windows build workflow (now succeeds even if directory exists)
 
 ### Changed
-- build.yml, ci.yml などCI/CDワークフローの安定性向上
+- Improved stability of CI/CD workflows (build.yml, ci.yml, etc.)
 
 ## [v0.1.3] - 2025-06-30
 
@@ -82,8 +88,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Real-time updates every 500ms
 - Memory-safe Rust implementation with proper string handling
 - Platform-specific library loading (Linux: .so, Windows: .dll, macOS: .dylib)
-
-[Unreleased]: https://github.com/suikan4github/demo-flutter-rust-cpu/compare/v0.1.5...develop
+- 
+[Unreleased]: https://github.com/suikan4github/demo-flutter-rust-cpu/compare/v0.1.6...develop
+[v0.1.6]: https://github.com/suikan4github/demo-flutter-rust-cpu/compare/v0.1.5...v0.1.6
 [v0.1.5]: https://github.com/suikan4github/demo-flutter-rust-cpu/compare/v0.1.3...v0.1.5
 [v0.1.3]: https://github.com/suikan4github/demo-flutter-rust-cpu/compare/v0.1.2...v0.1.3
 [v0.1.2]: https://github.com/suikan4github/demo-flutter-rust-cpu/compare/v0.1.1...v0.1.2
