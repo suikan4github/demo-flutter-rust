@@ -5,7 +5,15 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 
+
 ## [Unreleased]
+
+## [v0.1.9] - 2025-07-01
+
+### Changed
+- Release artifact filenames now follow the format `${project_name}-${version}-${target_os}-${arch}.${extension}` (e.g., `demo-flutter-rust-cpu-0.1.9-linux-x86_64.tar.gz`).
+- The `${arch}` part is normalized to `x86_64` or `aarch64` depending on the build environment.
+- This change applies to all platforms: Linux, Windows, and macOS.
 
 ## [v0.1.8] - 2025-07-01
 
@@ -108,7 +116,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - Memory-safe Rust implementation with proper string handling
 - Platform-specific library loading (Linux: .so, Windows: .dll, macOS: .dylib)
 - 
-[Unreleased]: https://github.com/suikan4github/demo-flutter-rust-cpu/compare/v0.1.8...develop
+[Unreleased]: https://github.com/suikan4github/demo-flutter-rust-cpu/compare/v0.1.9...develop
+[v0.1.9]: https://github.com/suikan4github/demo-flutter-rust-cpu/compare/v0.1.8...v0.1.9
 [v0.1.8]: https://github.com/suikan4github/demo-flutter-rust-cpu/compare/v0.1.7...v0.1.8
 [v0.1.7]: https://github.com/suikan4github/demo-flutter-rust-cpu/compare/v0.1.6...v0.1.7
 [v0.1.6]: https://github.com/suikan4github/demo-flutter-rust-cpu/compare/v0.1.5...v0.1.6

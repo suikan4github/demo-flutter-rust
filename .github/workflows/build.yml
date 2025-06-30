@@ -151,12 +151,25 @@ jobs:
     - name: Download all artifacts
       uses: actions/download-artifact@v4
       
+    - name: Set version and arch variables
+      id: vars
+      run: |
+        VERSION=${GITHUB_REF##*/}
+        VERSION=${VERSION#v}
+        echo "version=$VERSION" >> $GITHUB_OUTPUT
+        echo "arch=$(uname -m)" >> $GITHUB_OUTPUT
+
     - name: Create release archives
       run: |
-        # Create archives for each platform
-        cd linux-build && tar -czf ../demo-flutter-rust-cpu-linux.tar.gz * && cd ..
-        cd windows-build && zip -r ../demo-flutter-rust-cpu-windows.zip * && cd ..
-        cd macos-build && tar -czf ../demo-flutter-rust-cpu-macos.tar.gz * && cd ..
+        VERSION=${{ steps.vars.outputs.version }}
+        ARCH=${{ steps.vars.outputs.arch }}
+        PROJECT=demo-flutter-rust-cpu
+        # Normalize arch
+        if [ "$ARCH" = "x86_64" ]; then ARCH="x86_64"; fi
+        if [ "$ARCH" = "aarch64" ] || [ "$ARCH" = "arm64" ]; then ARCH="aarch64"; fi
+        cd linux-build && tar -czf ../${PROJECT}-${VERSION}-linux-${ARCH}.tar.gz * && cd ..
+        cd windows-build && zip -r ../${PROJECT}-${VERSION}-windows-${ARCH}.zip * && cd ..
+        cd macos-build && tar -czf ../${PROJECT}-${VERSION}-macos-${ARCH}.tar.gz * && cd ..
         
     - name: Create Release
       uses: ncipollo/release-action@v1
