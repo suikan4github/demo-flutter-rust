@@ -7,6 +7,21 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [v0.1.2] - 2025-06-30
+
+### Fixed
+- Rust clippy warnings and compilation errors
+- Removed unused import (`Cpu` from sysinfo)
+- Fixed unsafe block usage in test functions
+- Corrected static mutable reference patterns using raw pointers
+- Marked `free_string` function as properly unsafe
+- Replaced manual range check with `contains()` method
+- Updated Flutter version in CI to 3.24.5 for better stability
+
+### Changed
+- Improved memory safety in Rust library tests
+- Enhanced CI/CD pipeline reliability
+
 ## [v0.1.1] - 2025-06-30
 
 ### Added
@@ -48,6 +63,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Memory-safe Rust implementation with proper string handling
 - Platform-specific library loading (Linux: .so, Windows: .dll, macOS: .dylib)
 
-[Unreleased]: https://github.com/suikan4github/demo-flutter-rust-cpu/compare/v0.1.1...develop
+[Unreleased]: https://github.com/suikan4github/demo-flutter-rust-cpu/compare/v0.1.2...develop
+[v0.1.2]: https://github.com/suikan4github/demo-flutter-rust-cpu/compare/v0.1.1...v0.1.2
 [v0.1.1]: https://github.com/suikan4github/demo-flutter-rust-cpu/compare/v0.1.0...v0.1.1
 [v0.1.0]: https://github.com/suikan4github/demo-flutter-rust-cpu/releases/tag/v0.1.0
