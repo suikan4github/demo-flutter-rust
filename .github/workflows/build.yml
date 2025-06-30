@@ -108,7 +108,7 @@ jobs:
         
     - name: Copy Rust library to expected location
       run: |
-        mkdir -p cpu_monitor\target\release
+        if (!(Test-Path cpu_monitor\target\release)) { mkdir cpu_monitor\target\release }
         copy cpu_monitor\target\x86_64-pc-windows-msvc\release\cpu_monitor.dll cpu_monitor\target\release\
         
     - name: Build Flutter Windows app
