@@ -1,0 +1,12 @@
+[package]
+name = "cpu_monitor"
+version = "0.1.0"
+edition = "2021"
+
+[lib]
+name = "cpu_monitor"
+crate-type = ["cdylib"]
+
+[dependencies]
+sysinfo = "0.32"
+libc = "0.2"
