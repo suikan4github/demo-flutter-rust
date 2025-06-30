@@ -7,6 +7,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [v0.1.3] - 2025-06-30
+
+### Fixed
+- Update CI/CD workflows to use Flutter 3.32.5 for Dart 3.8+ compatibility
+- Resolve CI failure due to Dart SDK version mismatch
+
+### Changed
+- All workflow files now explicitly specify Flutter 3.32.5
+
 ## [v0.1.2] - 2025-06-30
 
 ### Fixed
@@ -63,7 +72,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Memory-safe Rust implementation with proper string handling
 - Platform-specific library loading (Linux: .so, Windows: .dll, macOS: .dylib)
 
-[Unreleased]: https://github.com/suikan4github/demo-flutter-rust-cpu/compare/v0.1.2...develop
+[Unreleased]: https://github.com/suikan4github/demo-flutter-rust-cpu/compare/v0.1.3...develop
+[v0.1.3]: https://github.com/suikan4github/demo-flutter-rust-cpu/compare/v0.1.2...v0.1.3
 [v0.1.2]: https://github.com/suikan4github/demo-flutter-rust-cpu/compare/v0.1.1...v0.1.2
 [v0.1.1]: https://github.com/suikan4github/demo-flutter-rust-cpu/compare/v0.1.0...v0.1.1
 [v0.1.0]: https://github.com/suikan4github/demo-flutter-rust-cpu/releases/tag/v0.1.0
