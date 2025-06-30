@@ -12,7 +12,7 @@ void main() {
 
     // Verify that our app has the correct title
     expect(find.text('CPU Monitor'), findsOneWidget);
-    
+
     // The app might show error or loading state initially in test environment
     // since FFI might not work in test mode
     expect(find.byType(Scaffold), findsOneWidget);
@@ -21,7 +21,7 @@ void main() {
 
   testWidgets('App structure test', (WidgetTester tester) async {
     await tester.pumpWidget(const MyApp());
-    
+
     // Check if the main components exist
     expect(find.byType(MaterialApp), findsOneWidget);
     expect(find.byType(CpuMonitorScreen), findsOneWidget);

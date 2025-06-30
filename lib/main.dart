@@ -48,11 +48,11 @@ class _CpuMonitorScreenState extends State<CpuMonitorScreen> {
     try {
       _cpuMonitor = CpuMonitorBindings();
       _cpuMonitor.initCpuMonitor();
-      
+
       _cpuCount = _cpuMonitor.getCpuCount();
       _cpuUsages = List.filled(_cpuCount, 0.0);
       _cpuNames = [];
-      
+
       for (int i = 0; i < _cpuCount; i++) {
         _cpuNames.add(_cpuMonitor.getCpuName(i));
       }
@@ -75,12 +75,12 @@ class _CpuMonitorScreenState extends State<CpuMonitorScreen> {
   void _updateCpuUsages() {
     try {
       _cpuMonitor.updateCpuInfo();
-      
+
       final newUsages = <double>[];
       for (int i = 0; i < _cpuCount; i++) {
         newUsages.add(_cpuMonitor.getCpuUsage(i));
       }
-      
+
       setState(() {
         _cpuUsages = newUsages;
       });
@@ -104,10 +104,7 @@ class _CpuMonitorScreenState extends State<CpuMonitorScreen> {
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         title: const Text('CPU Monitor'),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: _buildBody(),
-      ),
+      body: Padding(padding: const EdgeInsets.all(16.0), child: _buildBody()),
     );
   }
 
@@ -117,16 +114,9 @@ class _CpuMonitorScreenState extends State<CpuMonitorScreen> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const Icon(
-              Icons.error,
-              size: 64,
-              color: Colors.red,
-            ),
+            const Icon(Icons.error, size: 64, color: Colors.red),
             const SizedBox(height: 16),
-            Text(
-              'Error',
-              style: Theme.of(context).textTheme.headlineSmall,
-            ),
+            Text('Error', style: Theme.of(context).textTheme.headlineSmall),
             const SizedBox(height: 8),
             Text(
               _errorMessage,
@@ -139,9 +129,7 @@ class _CpuMonitorScreenState extends State<CpuMonitorScreen> {
     }
 
     if (!_isInitialized) {
-      return const Center(
-        child: CircularProgressIndicator(),
-      );
+      return const Center(child: CircularProgressIndicator());
     }
 
     return Column(
@@ -172,10 +160,7 @@ class _CpuMonitorScreenState extends State<CpuMonitorScreen> {
           ),
         ),
         const SizedBox(height: 16),
-        Text(
-          'CPU Usage (%)',
-          style: Theme.of(context).textTheme.titleLarge,
-        ),
+        Text('CPU Usage (%)', style: Theme.of(context).textTheme.titleLarge),
         const SizedBox(height: 8),
         Expanded(
           child: GridView.builder(
@@ -188,8 +173,10 @@ class _CpuMonitorScreenState extends State<CpuMonitorScreen> {
             itemCount: _cpuCount,
             itemBuilder: (context, index) {
               final usage = _cpuUsages[index];
-              final cpuName = _cpuNames.isNotEmpty ? _cpuNames[index] : 'CPU $index';
-              
+              final cpuName = _cpuNames.isNotEmpty
+                  ? _cpuNames[index]
+                  : 'CPU $index';
+
               return Card(
                 child: Padding(
                   padding: const EdgeInsets.all(12.0),
@@ -210,10 +197,11 @@ class _CpuMonitorScreenState extends State<CpuMonitorScreen> {
                           const SizedBox(width: 4),
                           Text(
                             '${usage.toStringAsFixed(1)}%',
-                            style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                              fontWeight: FontWeight.bold,
-                              color: _getUsageColor(usage),
-                            ),
+                            style: Theme.of(context).textTheme.titleSmall
+                                ?.copyWith(
+                                  fontWeight: FontWeight.bold,
+                                  color: _getUsageColor(usage),
+                                ),
                           ),
                         ],
                       ),

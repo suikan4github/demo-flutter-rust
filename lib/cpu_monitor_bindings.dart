@@ -73,13 +73,13 @@ class CpuMonitorBindings {
         'data\\cpu_monitor.dll', // dataディレクトリ
         'cpu_monitor\\target\\release\\cpu_monitor.dll', // 開発時のパス
       ];
-      
+
       for (final dllPath in possiblePaths) {
         if (File(dllPath).existsSync()) {
           return dllPath;
         }
       }
-      
+
       // どのパスでも見つからない場合は、デフォルトのパスを返す
       return 'cpu_monitor.dll';
     } else {

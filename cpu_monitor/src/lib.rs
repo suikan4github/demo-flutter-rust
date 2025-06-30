@@ -136,7 +136,10 @@ mod tests {
             assert_eq!(usage, 0.0, "Invalid CPU index should return 0.0");
 
             let name_ptr = get_cpu_name(cpu_count + 10);
-            assert!(name_ptr.is_null(), "Invalid CPU index should return null pointer");
+            assert!(
+                name_ptr.is_null(),
+                "Invalid CPU index should return null pointer"
+            );
         }
     }
 }
