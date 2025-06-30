@@ -63,25 +63,11 @@ class CpuMonitorBindings {
 
   String _getLibraryPath() {
     if (Platform.isLinux) {
-      return 'cpu_monitor/target/release/libcpu_monitor.so';
+      return 'lib/libcpu_monitor.so';
     } else if (Platform.isMacOS) {
-      return 'cpu_monitor/target/release/libcpu_monitor.dylib';
+      return 'lib/libcpu_monitor.dylib';
     } else if (Platform.isWindows) {
-      // 複数の場所を試行
-      final possiblePaths = [
-        'cpu_monitor.dll', // 実行ファイルと同じディレクトリ
-        'data\\cpu_monitor.dll', // dataディレクトリ
-        'cpu_monitor\\target\\release\\cpu_monitor.dll', // 開発時のパス
-      ];
-
-      for (final dllPath in possiblePaths) {
-        if (File(dllPath).existsSync()) {
-          return dllPath;
-        }
-      }
-
-      // どのパスでも見つからない場合は、デフォルトのパスを返す
-      return 'cpu_monitor.dll';
+      return 'lib/cpu_monitor.dll';
     } else {
       throw UnsupportedError('Unsupported platform');
     }

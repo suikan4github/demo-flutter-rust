@@ -52,8 +52,10 @@ jobs:
     - name: Build Flutter Linux app
       run: flutter build linux --release
 
-    - name: Copy Rust library to Flutter bundle
-      run: cp cpu_monitor/target/release/libcpu_monitor.so build/linux/x64/release/bundle/
+    - name: Copy Rust library to Flutter bundle (lib/)
+      run: |
+        mkdir -p build/linux/x64/release/bundle/lib
+        cp cpu_monitor/target/release/libcpu_monitor.so build/linux/x64/release/bundle/lib/
 
     - name: Upload Linux artifacts
       uses: actions/upload-artifact@v4
@@ -87,8 +89,10 @@ jobs:
         cd cpu_monitor
         cargo build --release --target x86_64-pc-windows-msvc
         
-    - name: Copy Rust library to Flutter bundle
-      run: copy cpu_monitor\target\x86_64-pc-windows-msvc\release\cpu_monitor.dll build\windows\x64\runner\Release\
+    - name: Copy Rust library to Flutter bundle (lib/)
+      run: |
+        powershell -Command "New-Item -ItemType Directory -Force -Path build\windows\x64\runner\Release\lib"
+        copy cpu_monitor\target\x86_64-pc-windows-msvc\release\cpu_monitor.dll build\windows\x64\runner\Release\lib\
         
     - name: Build Flutter Windows app
       run: flutter build windows --release
@@ -124,8 +128,10 @@ jobs:
     - name: Build Flutter macOS app
       run: flutter build macos --release
 
-    - name: Copy Rust library to Flutter bundle
-      run: cp cpu_monitor/target/release/libcpu_monitor.dylib build/macos/Build/Products/Release/
+    - name: Copy Rust library to Flutter bundle (lib/)
+      run: |
+        mkdir -p build/macos/Build/Products/Release/lib
+        cp cpu_monitor/target/release/libcpu_monitor.dylib build/macos/Build/Products/Release/lib/
 
     - name: Upload macOS artifacts
       uses: actions/upload-artifact@v4
