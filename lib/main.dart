@@ -178,52 +178,54 @@ class _CpuMonitorScreenState extends State<CpuMonitorScreen> {
         ),
         const SizedBox(height: 8),
         Expanded(
-          child: ListView.builder(
+          child: GridView.builder(
+            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: _getGridColumns(),
+              mainAxisExtent: 80.0, // 固定の高さを指定
+              crossAxisSpacing: 8.0,
+              mainAxisSpacing: 8.0,
+            ),
             itemCount: _cpuCount,
             itemBuilder: (context, index) {
               final usage = _cpuUsages[index];
               final cpuName = _cpuNames.isNotEmpty ? _cpuNames[index] : 'CPU $index';
               
               return Card(
-                margin: const EdgeInsets.only(bottom: 8.0),
                 child: Padding(
-                  padding: const EdgeInsets.all(16.0),
+                  padding: const EdgeInsets.all(12.0),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text(
-                            'CPU $index',
-                            style: Theme.of(context).textTheme.titleMedium,
+                          Expanded(
+                            child: Text(
+                              cpuName != 'CPU $index' ? cpuName : 'CPU $index',
+                              style: Theme.of(context).textTheme.titleSmall,
+                              overflow: TextOverflow.ellipsis,
+                            ),
                           ),
+                          const SizedBox(width: 4),
                           Text(
                             '${usage.toStringAsFixed(1)}%',
-                            style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                            style: Theme.of(context).textTheme.titleSmall?.copyWith(
                               fontWeight: FontWeight.bold,
                               color: _getUsageColor(usage),
                             ),
                           ),
                         ],
                       ),
-                      const SizedBox(height: 8),
+                      const SizedBox(height: 4),
                       LinearProgressIndicator(
                         value: usage / 100.0,
                         backgroundColor: Colors.grey[300],
                         valueColor: AlwaysStoppedAnimation<Color>(
                           _getUsageColor(usage),
                         ),
+                        minHeight: 6.0,
                       ),
-                      if (cpuName != 'CPU $index') ...[
-                        const SizedBox(height: 4),
-                        Text(
-                          cpuName,
-                          style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                            color: Colors.grey[600],
-                          ),
-                        ),
-                      ],
                     ],
                   ),
                 ),
@@ -233,6 +235,16 @@ class _CpuMonitorScreenState extends State<CpuMonitorScreen> {
         ),
       ],
     );
+  }
+
+  int _getGridColumns() {
+    if (_cpuCount <= 8) {
+      return 1; // 8個以下: 1列
+    } else if (_cpuCount <= 16) {
+      return 2; // 9-16個: 2列
+    } else {
+      return 3; // 17個以上: 3列
+    }
   }
 
   Color _getUsageColor(double usage) {
